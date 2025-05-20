@@ -52,3 +52,52 @@
 - Ingress
     - Gère les règles d’accès HTTP à l’extérieur du cluster.
     - Expose plusieurs services sous différents noms de domaine ou chemins.
+
+## Partie 3:
+1) Qu’est-ce qu’un StatefulSet dans Kubernetes?
+- Un StatefulSet est un objet Kubernetes utilisé pour déployer des applications avec état (comme une base de données).
+- Il garde l’identité stable des Pods : nom, stockage (volume), et ordre de démarrage sont préservés.
+
+2) Qu’est-ce qu’un Deployment dans Kubernetes?
+- Un Deployment est l’objet le plus courant pour déployer une application sans état (stateless), comme une API ou un site web.
+- Il gère:
+    - la création et mise à jour des Pods,
+    - le scaling automatique (réplicas),
+    - le redémarrage des Pods si besoin.
+
+3) Différence entre Deployment et StatefulSet:
+| Aspect             | **Deployment**               | **StatefulSet**                 |
+| ------------------ | ---------------------------- | ------------------------------- |
+| Identité des Pods  | Pas importante (anonyme)     | Stable (pod-0, pod-1, etc.)     |
+| Stockage           | Partagé ou éphémère          | Volume persistant et **unique** |
+| Ordre de démarrage | Indifférent                  | **Ordonné**                     |
+| Cas d’usage        | Applis sans état (stateless) | Applis avec état (stateful)     |
+
+4) Qu’est-ce que le scaling ? Pourquoi l’utiliser:
+- Le scaling, c’est le fait d’ajouter ou réduire le nombre de Pods d’une application.
+- Pourquoi on l’utilise:
+    - Gérer plus de trafic (scaling horizontal).
+    - Optimiser l’usage des ressources.
+    - Gérer la haute disponibilité.
+- Exemple: une API web passe de 2 à 10 pods pendant une montée de charge.
+
+5) Qu’est-ce qu’un load balancer ? (équilibreur de charge)
+- Un load balancer (ou équilibreur de charge) est un composant qui sert à répartir le trafic réseau entre plusieurs serveurs ou conteneurs.
+- Son rôle principal :
+    - Éviter la surcharge sur un seul serveur.
+    - Améliorer les performances en répartissant la charge.
+    - Assurer la haute disponibilité : si un serveur tombe, il redirige le trafic vers un autre.
+- En Kubernetes, un Service de type LoadBalancer permet d’exposer une application vers l’extérieur, avec répartition du trafic entre plusieurs pods.
+
+6) Pourquoi on ne met pas une base de données dans un Deployment ?
+- Un Deployment est fait pour des applications sans état (stateless), comme des APIs ou des frontends web.
+- Les bases de données, elles, sont avec état (stateful), car:
+    - Elles stockent des données persistantes.
+    - Elles ont besoin d’un stockage stable (volumes).
+    - Elles demandent souvent un nom réseau fixe (important pour la réplication).
+- C’est pour cela qu’on utilise un StatefulSet pour une base de données :
+    - Chaque pod garde le même nom (ex : mysql-0, mysql-1).
+    - Chaque pod a un volume dédié qui reste même après redémarrage.
+- Donc:
+    - Pas de base de données dans un Deployment
+    - Utiliser un StatefulSet avec un volume persistant (PVC)
