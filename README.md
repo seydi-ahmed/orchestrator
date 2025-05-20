@@ -1,4 +1,30 @@
 # 🧩 Orchestrator
+
+## Rappel
+
+### Projet 1 - Microservices: https://github.com/01-edu/public/tree/master/subjects/devops/crud-master-py
+1) développer trois applications : api-gateway-app, inventory-app, billing-app.
+2) utiliser deux bases PostgreSQL : billing-db, inventory-db.
+3) utiliser RabbitMQ comme système de message pour billing-app.
+
+### Projet 2 - Dockerisation: https://github.com/01-edu/public/tree/master/subjects/devops/play-with-containers
+1) docker-compose.yml qui orchestre les services.
+2) chaque microservice et composant a son propre Dockerfile.
+3) relier les apps aux services dont elles dépendent (depends_on + healthcheck).
+4) utiliser des volumes pour la persistance (DB & RabbitMQ).
+
+## Projet 3(actuel) - Kubernetes (K3s + Vagrant): https://github.com/01-edu/public/tree/master/subjects/devops/orchestrator
+1) tout migrer vers K8s (K3s sur 2 VMs : master + agent).
+2) docker-pusher les images sur Docker Hub.
+3) écrire des manifests (YAMLs) pour:
+- Deployments (ou StatefulSet pour DB et billing-app)
+- Services (type ClusterIP ou NodePort selon besoin)
+- Ingress pour exposer api-gateway
+- Autoscaling (HPA sur CPU pour inventory-app et api-gateway)
+- Secrets pour les mots de passe (interdiction de les écrire dans les YAMLs hors Secret)
+4) écrire un orchestrator.sh avec create, start, stop pour gérer l'infra.
+5) documenter tout dans un README.md.
+
 ## 🚀 Description
 - Orchestrator est un projet visant à déployer une architecture microservices complète sur un cluster Kubernetes (K3s) à l’aide de Vagrant, Docker, et des outils DevOps modernes. L’objectif est de comprendre, construire et orchestrer des services conteneurisés via Kubernetes, tout en appliquant des concepts fondamentaux tels que:
     - Déploiements, Services, Ingress, Secrets
@@ -157,27 +183,3 @@ Deux services utilisent HorizontalPodAutoscaler :
 - **Numéro** : +221776221681
 - **Réseaux** : [LinkedIn](https://linkedin.com/in/mouhamed-diouf-435207174)
 
-## Rappel
-
-### Projet 1 - Microservices:
-1) développer trois applications : api-gateway-app, inventory-app, billing-app.
-2) utiliser deux bases PostgreSQL : billing-db, inventory-db.
-3) utiliser RabbitMQ comme système de message pour billing-app.
-
-### Projet 2 - Dockerisation:
-1) docker-compose.yml qui orchestre les services.
-2) chaque microservice et composant a son propre Dockerfile.
-3) relier les apps aux services dont elles dépendent (depends_on + healthcheck).
-4) utiliser des volumes pour la persistance (DB & RabbitMQ).
-
-## Projet 3(actuel) - Kubernetes (K3s + Vagrant):
-1) tout migrer vers K8s (K3s sur 2 VMs : master + agent).
-2) docker-pusher les images sur Docker Hub.
-3) écrire des manifests (YAMLs) pour:
-- Deployments (ou StatefulSet pour DB et billing-app)
-- Services (type ClusterIP ou NodePort selon besoin)
-- Ingress pour exposer api-gateway
-- Autoscaling (HPA sur CPU pour inventory-app et api-gateway)
-- Secrets pour les mots de passe (interdiction de les écrire dans les YAMLs hors Secret)
-4) écrire un orchestrator.sh avec create, start, stop pour gérer l'infra.
-5) documenter tout dans un README.md.
