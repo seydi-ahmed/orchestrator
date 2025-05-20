@@ -1,5 +1,7 @@
 # 🧩 Orchestrator
 
+********************
+
 ## Rappel
 
 ### Projet 1 - Microservices: https://github.com/01-edu/public/tree/master/subjects/devops/crud-master-py
@@ -25,6 +27,8 @@
 4) écrire un orchestrator.sh avec create, start, stop pour gérer l'infra.
 5) documenter tout dans un README.md.
 
+********************
+
 ## 🚀 Description
 - Orchestrator est un projet visant à déployer une architecture microservices complète sur un cluster Kubernetes (K3s) à l’aide de Vagrant, Docker, et des outils DevOps modernes. L’objectif est de comprendre, construire et orchestrer des services conteneurisés via Kubernetes, tout en appliquant des concepts fondamentaux tels que:
     - Déploiements, Services, Ingress, Secrets
@@ -32,6 +36,8 @@
     - Auto-scaling (HPA)
     - RabbitMQ pour la communication entre services
     - CI/CD & Infrastructure as Code
+
+********************
 
 ## 📦 Architecture du projet
 - Voici les composants déployés dans le cluster:
@@ -58,8 +64,9 @@
 +----------------------+
 ```
 
-## 🛠️ Technologies utilisées
+********************
 
+## 🛠️ Technologies utilisées
 | Outil/Technologie     | Rôle                                           |
 |------------------------|------------------------------------------------|
 | **Kubernetes (K3s)**   | Orchestration des services                     |
@@ -72,6 +79,7 @@
 | **HPA**                | Auto-scaling basé sur la consommation CPU      |
 | **Kubernetes Secrets** | Gestion sécurisée des credentials              |
 
+********************
 
 ## 🖥️ Prérequis
 - Docker
@@ -79,6 +87,8 @@
 - VirtualBox
 - kubectl
 - Accès à Docker Hub
+
+********************
 
 ## 📁 Structure du dépôt
 ```
@@ -91,6 +101,8 @@
 ├── Vagrantfile            # Provisionnement K3s master/agent
 └── README.md              # Documentation complète
 ```
+
+********************
 
 ## ⚙️ Configuration & Lancement
 1. Cloner le projet
@@ -146,6 +158,8 @@ curl -X POST http://192.168.56.10:3000/api/movies \
 curl http://192.168.56.10:3000/api/movies
 ```
 
+********************
+
 ## Commandes utiles:
 - couper billing-app
     - kubectl scale statefulset billing-app --replicas=0
@@ -159,6 +173,7 @@ Deux services utilisent HorizontalPodAutoscaler :
 | api-gateway   | 1        | 3        | 60%        |
 | inventory-app | 1        | 3        | 60%        |
 
+********************
 
 ## 🧪 Endpoints principaux
 
@@ -167,6 +182,7 @@ Deux services utilisent HorizontalPodAutoscaler :
 | API Gateway   | http://<cluster-ip>:3000/api/movies      | GET / POST / etc |
 | Billing Queue | http://<cluster-ip>:3000/api/billing     | POST             |
 
+********************
 
 ## 🤖 Script Orchestrator
 - bash script/./orchestrator.sh create   # Crée les VM et le cluster
@@ -175,6 +191,7 @@ Deux services utilisent HorizontalPodAutoscaler :
 - bash script/./orchestrator.sh destroy  # Détruire le cluster
 - etc.
 
+********************
 
 ## Auteur
 - **Nom** : Mouhamed DIOUF
@@ -183,3 +200,4 @@ Deux services utilisent HorizontalPodAutoscaler :
 - **Numéro** : +221776221681
 - **Réseaux** : [LinkedIn](https://linkedin.com/in/mouhamed-diouf-435207174)
 
+********************
