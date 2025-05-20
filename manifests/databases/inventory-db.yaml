@@ -1,0 +1,66 @@
+# ./manifests/databases/inventory-db.yaml
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: inventory-db
+spec:
+  selector:
+    matchLabels:
+      app: inventory-db
+  serviceName: inventory-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: inventory-db
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: master
+      containers:
+        - name: inventory-db
+          image: mouhameddiouf01/postgres-db:latest
+          ports:
+            - containerPort: 5432
+          env:
+            # - name: INVENTORY_DB_USER
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: inventory-db-secret
+                  key: username
+            # - name: INVENTORY_DB_PASSWORD
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: inventory-db-secret
+                  key: password
+            # - name: INVENTORY_DB_NAME
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: inventory-db-secret
+                  key: dbname
+          volumeMounts:
+            - name: inventory-db-storage
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: inventory-db-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: local-path
+        resources:
+          requests:
+            storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-db
+spec:
+  selector:
+    app: inventory-db
+  ports:
+    - port: 5432
+      targetPort: 5432
