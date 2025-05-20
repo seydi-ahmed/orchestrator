@@ -151,11 +151,11 @@ Deux services utilisent HorizontalPodAutoscaler :
 
 
 ## Auteur
-- **Nom** : Mouhamed DIOUF et Abdou BALDÉ
-- **GitHub** : [mouhameddiouf](https://github.com/seydi-ahmed) et
-- **Email** : seydiahmedelcheikh@gmail.com et 
-- **Numéro** : +221776221681 et 
-- **Réseaux** : [LinkedIn](https://linkedin.com/in/mouhamed-diouf-435207174) et
+- **Nom** : Mouhamed DIOUF
+- **GitHub** : [mouhameddiouf](https://github.com/seydi-ahmed)
+- **Email** : seydiahmedelcheikh@gmail.com
+- **Numéro** : +221776221681
+- **Réseaux** : [LinkedIn](https://linkedin.com/in/mouhamed-diouf-435207174)
 
 ## Rappel
 
